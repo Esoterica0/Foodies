@@ -1,0 +1,39 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+<style>.pay-btn {
+    border: 1px solid black;
+    color: black;
+    background-color: white; /* optional: set background color */
+    padding: 8px 16px; /* adjust padding as needed */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pay-btn:hover {
+    background-color: black;
+    color: white;
+}
+</style>
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-5 col-sm-12 p-4 text-center">
+            <h1>Order Submitted!</h1>
+            <p>Your Order is Confirmed and you will recieve a message soon.</p>
+            <a href="{% url 'index' %}">Continue Ordering </a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5 col-sm-12 text-center">
+            <h3 class="pb-3">Order Summary:</h3>
+            {% for item in items %}
+                <p>{{ item.name }} <span class="pl-3">{{ item.price }}</span></p>
+            {% endfor %}
+
+            <p class="font-weight-bold pt-4">Total: {{ price }}</p>
+            <button class="pay-btn"> Pay</button>
+        </div>
+    </div>
+</div>
+{% endblock content %}
